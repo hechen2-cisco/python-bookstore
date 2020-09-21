@@ -3,7 +3,7 @@
 ## Goals
 
 - Get familiar with Python
-- Understand REST API
+- Understand REST API: https://www.kite.com/blog/python/flask-restful-api-tutorial/
 - Work with Mongo DB driver
 
 ## Problem Statement
@@ -21,7 +21,6 @@
 }
 ```
 - Create the following APIs
-
 ```
 POST /books : Creates a new book.
 PUT /book/{id}: Updates a book.
@@ -30,6 +29,14 @@ GET /book/{id}: Returns the book with id = {id}
 DELETE /book/{id}: Deletes the book with id = {id}
 DELETE /books: Deletes all books in the store
 ```
+## Steps
+- install Python 3
+- Install Visual Source Code
+- Install Python extension for VS Code
+- Install MongoDB Python driver: https://docs.mongodb.com/drivers/pymongo
+- Install Flask: `pip install Flask`
+- install Flask-CORS: `pip install -U flask-cors`
+
 ## Tips
 - Run MongoDB on docker
 ```
@@ -51,3 +58,8 @@ docker run mongo
 ## Suggested Reading
 * https://kubernetes.io/docs/tutorials/
 * https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+
+## To Run the App
+```
+env FLASK_APP=app.py flash run
+```
