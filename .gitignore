@@ -2,3 +2,4 @@ venv/**
 .history
 .vscode
 *.pyc
+__pycache__

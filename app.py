@@ -12,36 +12,37 @@ books = Books()
 def hello():
   return "Hello, World!"
 
-@app.route('/books', methods=['GET', 'POST', 'DELETE'])
-def doBooks():
-  if request.method == 'GET':
-    return books.doGetBooks()
-  elif request.method == 'POST':
-    result = books.doPostBooks(request.data)
-    if result:
-      return result, 201
-    else:
-      return { 'message', 'post error'}, 500
-  elif request.method == 'DELETE':
-    return books.doDeleteBooks(), 204
-  else:
-    return books.doNoBook(), 404
+@app.route('/books', methods=['GET'])
+def GetAllBooks():
+  return books.GetAll()
 
-@app.route('/book/<id>', methods=['GET', 'PUT', 'DELETE'])
-def doBook(id):
-  print('id:', id)
-  if request.method == 'GET':
-    result = books.doGetBook(id)
-    if result != 'null':
-      return result, 200
-    else:
-      return "book not found", 404
-  elif request.method == 'PUT':
-    return books.doPutBook(id, request.data)
-  elif request.method == 'DELETE':
-    return books.doDeleteBook(id), 204
+@app.route('/books', methods=['POST'])
+def PostOneBook():
+  result = books.PostOne(request.data)
+  if result:
+    return result, 201
   else:
-    return books.doNoBook(), 404
+    return { 'message', 'post error'}, 500
+
+@app.route('/books', methods=['DELETE'])
+def DeleteAllBooks():
+  return books.DeleteAll(), 204
+
+@app.route('/book/<id>', methods=['GET'])
+def GetOneBook(id):
+  result = books.GetOne(id)
+  if result != 'null':
+    return result, 200
+  else:
+    return "book not found", 404
+
+@app.route('/book/<id>', methods=['PUT'])
+def PutOneBook(id):
+  return books.PutOne(id, request.data)
+
+@app.route('/book/<id>', methods=['DELETE'])
+def DeleteOneBook(id):
+  return books.DeleteOne(id), 204
 
 if __name__ == '__main__':
   app.run(debug=True)
