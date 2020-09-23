@@ -1,5 +1,6 @@
-#!/usr/local/bin/python3
+#!/usr/local/bin/python
 
+import os
 from pymongo import MongoClient
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -7,7 +8,8 @@ import json
 
 class Books:
   def __init__(self):
-    client = MongoClient('mongodb://localhost:27017')
+    dbhost = os.environ.get('DB')
+    client = MongoClient(f'mongodb://{dbhost}:27017')
     db = client['bookstore']
     self.books = db['books']
 

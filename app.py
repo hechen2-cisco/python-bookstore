@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/local/bin/python
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -45,4 +45,4 @@ def DeleteOneBook(id):
   return books.DeleteOne(id), 204
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(debug=False, host='0.0.0.0') # must have `host` setting!

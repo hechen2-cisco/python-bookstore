@@ -59,7 +59,20 @@ docker run mongo
 * https://kubernetes.io/docs/tutorials/
 * https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 
-## To Run the App
+## Run the App
+```
+python app.py
+```
+or
 ```
 env FLASK_APP=app.py flash run
 ```
+## Run from Docker
+```
+docker network create --driver bridge book-net
+docker network inspect book-net
+docker run -dit --name mongodb --network book-net mongo:latest
+docker run -dit --name pybook --network book-net --env DB=mongodb -p 5001:5000 hechen2/pybook
+```
+then check browser at `localhost:5001`
+ 
